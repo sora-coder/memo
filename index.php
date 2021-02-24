@@ -17,7 +17,6 @@
 
 <main>
 <h2>Practice</h2>
-<pre>
 <?php
 try {
     $db = new PDO('mysql:dbname=mydb;host=localhost;charset=utf8', 'root', 'root');
@@ -25,14 +24,17 @@ try {
     echo 'DB接続エラー: ' . $e->getMessage();
 }
 
-$records = $db->query('SELECT * FROM my_items');
-while ($record = $records->fetch()){
-    print($record['item_name'] . "\n");
-}
-
+$memos = $db->query('SELECT * FROM memos ORDER BY id DESC');
 
 ?>
-</pre>
+
+<article>
+    <?php while ($memo = $memos->fetch()): ?>
+        <p><a href="#"><?php print($memo['memo']); ?></a></p>
+        <time><?php print($memo['created_at']); ?></time>
+        <hr>
+    <?php endwhile; ?>
+</article>
 </main>
 </body>
 </html>
