@@ -17,14 +17,10 @@
 
 <main>
 <h2>Practice</h2>
-<?php
-try {
-    $db = new PDO('mysql:dbname=mydb;host=localhost;charset=utf8', 'root', 'root');
-} catch(PDOException $e) {
-    echo 'DB接続エラー: ' . $e->getMessage();
-}
 
-$memos = $db->query('SELECT * FROM memos ORDER BY id DESC');
+<?php
+    require('dbconnect.php');
+    $memos = $db->query('SELECT * FROM memos ORDER BY id DESC');
 ?>
 
 <article>
